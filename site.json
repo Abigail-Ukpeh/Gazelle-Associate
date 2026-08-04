@@ -1,0 +1,10 @@
+{
+  "description": "This professional website connects individuals and businesses with trusted Nigerian legal counsel, facilitating consultation bookings and legal inquiries.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-indigo: #3E3D7C;
+  --color-indigo-dark: #2d2c5c;
+  --color-indigo-mid: #4f4e96;
+  --color-indigo-light: #6564b0;
+  --color-indigo-pale: #eeeef8;
+  --color-charcoal: #1a1a2e;
+  --color-silver: #9291a5;
+  --color-light: #f5f5f8;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: #1a1a2e;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f5f5f8; }
+::-webkit-scrollbar-thumb { background: #9291a5; border-radius: 3px; }
+
+.font-serif { font-family: var(--font-serif); }
+.font-sans  { font-family: var(--font-sans); }
+
+/* ── Keyframes ── */
+@keyframes fadeUp       { from { opacity:0; transform:translateY(36px) } to { opacity:1; transform:translateY(0) } }
+@keyframes fadeDown     { from { opacity:0; transform:translateY(-20px) } to { opacity:1; transform:translateY(0) } }
+@keyframes fadeIn       { from { opacity:0 } to { opacity:1 } }
+@keyframes slideInRight { from { opacity:0; transform:translateX(32px) } to { opacity:1; transform:translateX(0) } }
+@keyframes slideInLeft  { from { opacity:0; transform:translateX(-32px) } to { opacity:1; transform:translateX(0) } }
+@keyframes scaleIn      { from { opacity:0; transform:scale(0.92) } to { opacity:1; transform:scale(1) } }
+@keyframes scaleUp      { from { opacity:0; transform:scale(0.85) translateY(16px) } to { opacity:1; transform:scale(1) translateY(0) } }
+@keyframes countUp      { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
+@keyframes pulse-ring   {
+  0%   { transform:scale(1); opacity:0.6 }
+  70%  { transform:scale(1.6); opacity:0 }
+  100% { transform:scale(1.6); opacity:0 }
+}
+@keyframes float {
+  0%,100% { transform:translateY(0) }
+  50%      { transform:translateY(-8px) }
+}
+@keyframes shimmer {
+  from { background-position: -400px 0 }
+  to   { background-position: 400px 0 }
+}
+@keyframes spin-slow { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }
+@keyframes icon-pop {
+  0%   { transform:scale(1)   }
+  40%  { transform:scale(1.25) }
+  100% { transform:scale(1.1) }
+}
+@keyframes draw {
+  from { stroke-dashoffset: 200 }
+  to   { stroke-dashoffset: 0 }
+}
+
+/* ── Utility animation classes ── */
+.anim-fade-up      { animation: fadeUp 0.75s cubic-bezier(.22,1,.36,1) both; }
+.anim-fade-in      { animation: fadeIn 0.6s ease both; }
+.anim-scale-in     { animation: scaleIn 0.45s cubic-bezier(.22,1,.36,1) both; }
+.anim-slide-right  { animation: slideInRight 0.6s cubic-bezier(.22,1,.36,1) both; }
+.anim-slide-left   { animation: slideInLeft 0.6s cubic-bezier(.22,1,.36,1) both; }
+.anim-float        { animation: float 4s ease-in-out infinite; }
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity:0;
+  transform:translateY(32px);
+  transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible           { opacity:1; transform:translateY(0); }
+.reveal-delay-1           { transition-delay:0.08s; }
+.reveal-delay-2           { transition-delay:0.16s; }
+.reveal-delay-3           { transition-delay:0.24s; }
+.reveal-delay-4           { transition-delay:0.32s; }
+.reveal-delay-5           { transition-delay:0.42s; }
+.reveal-left              { opacity:0; transform:translateX(-32px); transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1); }
+.reveal-left.visible      { opacity:1; transform:translateX(0); }
+.reveal-right             { opacity:0; transform:translateX(32px); transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1); }
+.reveal-right.visible     { opacity:1; transform:translateX(0); }
+
+/* ── Card hover ── */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px -10px rgba(62,61,124,0.18);
+}
+
+/* ── Icon container hover ── */
+.icon-wrap { transition: transform 0.35s cubic-bezier(.22,1,.36,1), background 0.3s ease; }
+.group:hover .icon-wrap { transform: scale(1.12) rotate(-6deg); background: #3E3D7C !important; }
+.group:hover .icon-wrap svg { stroke: white !important; }
+
+/* ── Practice card hover ── */
+.practice-card { transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.3s; }
+.practice-card:hover { transform: translateY(-8px); box-shadow: 0 24px 64px -12px rgba(62,61,124,0.2); border-color: #6564b0 !important; }
+
+/* ── Floating button pulse ── */
+.fab-pulse::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:9999px;
+  background:#3E3D7C;
+  animation: pulse-ring 2.4s cubic-bezier(.215,.61,.355,1) infinite;
+  z-index:-1;
+}
+
+/* ── Image zoom ── */
+.img-zoom { overflow:hidden; }
+.img-zoom img { transition: transform 0.6s cubic-bezier(.22,1,.36,1); }
+.img-zoom:hover img, .group:hover .img-zoom img { transform:scale(1.06); }
+
+/* ── Reading progress ── */
+.reading-progress { transition: width 0.1s linear; }
+
+/* ── Page transition ── */
+.page-enter { animation: fadeUp 0.5s cubic-bezier(.22,1,.36,1) both; }
+
+/* ── Stagger children ── */
+.stagger > *:nth-child(1) { animation-delay:0s; }
+.stagger > *:nth-child(2) { animation-delay:0.07s; }
+.stagger > *:nth-child(3) { animation-delay:0.14s; }
+.stagger > *:nth-child(4) { animation-delay:0.21s; }
+.stagger > *:nth-child(5) { animation-delay:0.28s; }
+.stagger > *:nth-child(6) { animation-delay:0.35s; }
+
+/* ── Insight card ── */
+.insight-img { transition: transform 0.55s cubic-bezier(.22,1,.36,1); }
+.insight-card:hover .insight-img { transform:scale(1.06); }
+
+/* ── Hero line ── */
+.hero-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+.hero-line.drawn { animation: draw 1.5s ease forwards; }
