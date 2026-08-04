@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import logoImg from '@/imports/WhatsApp_Image_2026-08-01_at_17.51.33-removebg-preview.png'
+import logoImg from 'import img from '../../WhatsApp_Image_2026-08-01_at_17.51.33-removebg-preview.png'
 
 // ─── SVG Icon System ──────────────────────────────────────────────────────────
 const s = (d: string, rest?: string) => (
